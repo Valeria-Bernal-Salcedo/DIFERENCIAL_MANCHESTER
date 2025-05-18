@@ -38,7 +38,7 @@ namespace DIFERENCIAL_MANCHESTER
         private void Dibujar(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics; // 'Lienzo' para dibujar
-            Pen pen = new Pen(Color.Blue, 2); // 'Lapiz' azul para la señal
+            Pen pen = new Pen(Color.Purple, 2); // 'Lapiz' azul para la señal
             Pen gridPen = new Pen(Color.LightGray, 1); // 'Lapiz' gris para la cuadricula
             Font font = new Font("Arial", 10); // Fuente
 
@@ -65,38 +65,57 @@ namespace DIFERENCIAL_MANCHESTER
             g.DrawLine(gridPen, xInicio, yCero, xInicio + bits.Length * ancho, yCero);
 
             // Dibujar los bits
-            int yActual = bits[0]=='1' ? yUno : yCero; // Nivel inicial
+            int yActual = yUno; // Nivel inicial
             int x = xInicio;
+
+            bool nivelAlto = true;
 
             for (int i = 0; i < bits.Length; i++)
             {
                 char bit = bits[i];
 
-                // Dibujar el numero del bit
-                g.DrawString(bits[i].ToString(), font, Brushes.Black, x + 15, yCero + 10);
-
-                bool transicionInicio = (bit == '0');
-
-                /// Parte izquierda (inicio del bit)
-                if (transicionInicio)
+                // Solo para el primer bit, forzamos transición al inicio para empezar
+                if (i == 0)
                 {
-                    int nuevaY = (yActual == yUno) ? yCero : yUno;
-                    g.DrawLine(pen, x, yActual, x, nuevaY); // transición al inicio
+                    // Dibujar línea vertical inicial desde el opuesto
+                    g.DrawLine(pen, x, (nivelAlto ? yCero : yUno), x, (nivelAlto ? yUno : yCero));
+                    yActual = nivelAlto ? yUno : yCero;
+                }
+
+                // Determinar si hay transición al inicio según el bit
+                if (bit == '0')
+                {
+                    // Cambiar nivel lógico
+                    nivelAlto = !nivelAlto;
+                    int nuevaY = nivelAlto ? yUno : yCero;
+
+                    // Dibujar transición vertical al inicio del bit
+                    g.DrawLine(pen, x, yActual, x, nuevaY);
                     yActual = nuevaY;
+                }
+                else
+                {
+                    // Si no hay transición, mantenemos yActual
+                    yActual = nivelAlto ? yUno : yCero;
                 }
 
                 // Línea horizontal mitad izquierda
                 g.DrawLine(pen, x, yActual, x + mitad, yActual);
 
-                int midY = (yActual == yUno) ? yCero : yUno;
+                // Transición a mitad del bit (siempre ocurre)
+                nivelAlto = !nivelAlto;
+                int midY = nivelAlto ? yUno : yCero;
                 g.DrawLine(pen, x + mitad, yActual, x + mitad, midY);
-                yActual = midY;
 
-                // Dibujar línea mitad derecha
-                g.DrawLine(pen, x + mitad, yActual, x + ancho, yActual);
+                // Línea horizontal mitad derecha
+                g.DrawLine(pen, x + mitad, midY, x + ancho, midY);
 
-                // Preparar siguiente bit
+                // Dibuja el número del bit
+                g.DrawString(bits[i].ToString(), font, Brushes.Black, x + 15, yCero + 10);
+
+                // Prepara para siguiente iteración
                 x += ancho;
+                yActual = midY;
             }
 
             // Dibujar flecha final
