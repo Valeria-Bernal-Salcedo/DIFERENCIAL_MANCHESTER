@@ -40,7 +40,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(140, 100);
+            this.label1.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.label1.Location = new System.Drawing.Point(165, 107);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(248, 28);
             this.label1.TabIndex = 1;
@@ -49,7 +50,7 @@
             // signal
             // 
             this.signal.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.signal.Location = new System.Drawing.Point(474, 100);
+            this.signal.Location = new System.Drawing.Point(458, 100);
             this.signal.Name = "signal";
             this.signal.Size = new System.Drawing.Size(290, 35);
             this.signal.TabIndex = 2;
@@ -57,30 +58,34 @@
             // 
             // GRAFICAR
             // 
+            this.GRAFICAR.BackColor = System.Drawing.Color.Orchid;
             this.GRAFICAR.Font = new System.Drawing.Font("Tahoma", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GRAFICAR.Location = new System.Drawing.Point(835, 100);
+            this.GRAFICAR.ForeColor = System.Drawing.Color.White;
+            this.GRAFICAR.Location = new System.Drawing.Point(816, 86);
             this.GRAFICAR.Name = "GRAFICAR";
             this.GRAFICAR.Size = new System.Drawing.Size(277, 58);
             this.GRAFICAR.TabIndex = 3;
             this.GRAFICAR.Text = "GRAFICAR";
-            this.GRAFICAR.UseVisualStyleBackColor = true;
+            this.GRAFICAR.UseVisualStyleBackColor = false;
             this.GRAFICAR.Click += new System.EventHandler(this.GRAFICAR_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(442, 20);
+            this.label3.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Purple;
+            this.label3.Location = new System.Drawing.Point(356, 20);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(365, 24);
+            this.label3.Size = new System.Drawing.Size(549, 36);
             this.label3.TabIndex = 7;
             this.label3.Text = "SEÑAL DIFERENCIAL MANCHESTER";
             // 
             // difManchester
             // 
-            this.difManchester.Location = new System.Drawing.Point(58, 203);
+            this.difManchester.BackColor = System.Drawing.Color.White;
+            this.difManchester.Location = new System.Drawing.Point(170, 196);
             this.difManchester.Name = "difManchester";
-            this.difManchester.Size = new System.Drawing.Size(1137, 253);
+            this.difManchester.Size = new System.Drawing.Size(923, 256);
             this.difManchester.TabIndex = 8;
             this.difManchester.TabStop = false;
             // 
@@ -88,13 +93,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 723);
+            this.BackColor = System.Drawing.Color.Thistle;
+            this.ClientSize = new System.Drawing.Size(1248, 547);
             this.Controls.Add(this.difManchester);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.GRAFICAR);
             this.Controls.Add(this.signal);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.difManchester)).EndInit();
             this.ResumeLayout(false);
